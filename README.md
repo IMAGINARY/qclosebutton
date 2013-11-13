@@ -14,6 +14,12 @@ Use
 ---
 
 ```
+./qclosebutton IMAGE COMMAND
+```
+
+Example:
+
+```
 ./qclosebutton x_48x48.png xterm -maximized
 ```
 
