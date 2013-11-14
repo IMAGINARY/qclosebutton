@@ -23,7 +23,7 @@ void sig_handler(int sig)
 TranslucentRoundWindow::TranslucentRoundWindow( const char* png_filename, QWidget *parent ) : QWidget(parent, Qt::FramelessWindowHint)
 {
     setAttribute(Qt::WA_TranslucentBackground, true );
-    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint );
 	
     img.load( png_filename );
     double sx = QApplication::desktop()->availableGeometry(this).width() / 1920.0;
