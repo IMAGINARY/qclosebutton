@@ -31,6 +31,10 @@ TranslucentRoundWindow::TranslucentRoundWindow( const char* png_filename, QWidge
     double s = sx < sy ? sx : sy;
     img = img.scaledToWidth( (int) ( s * img.width() ), Qt::SmoothTransformation ); 	
 	
+    resize( img.size() );
+    ensurePolished();
+    updatePosition();
+	
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(testForAliveChild()));
     connect(timer, SIGNAL(timeout()), this, SLOT(updatePosition()));
@@ -62,6 +66,7 @@ void TranslucentRoundWindow::updatePosition()
 	QPoint p = QApplication::desktop()->availableGeometry(this).topRight();
 	this->move(p-QPoint(this->width()-1,0));
 }
+
 void TranslucentRoundWindow::mouseReleaseEvent ( QMouseEvent * event )
 {
 	if( QColor::fromRgba( img.pixel( event->x(), event->y() ) ).alpha() != 0 )
